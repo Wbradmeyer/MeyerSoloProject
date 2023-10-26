@@ -8,7 +8,7 @@ bcrypt = Bcrypt(app)
 
 
 class User:
-    db = "" #which database are you using for this project
+    db = "solo_project_db"
     def __init__(self, data):
         if 'users.id' in data:
             self.id = data['users.id']
