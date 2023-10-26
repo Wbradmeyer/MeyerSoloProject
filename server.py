@@ -1,5 +1,5 @@
 from flask_app import app
-from flask_app.controllers import users #controllers go here
+from flask_app.controllers import users, instruments
 
 if __name__=="__main__":   
     app.run(debug=True) 

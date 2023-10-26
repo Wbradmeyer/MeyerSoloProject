@@ -1,4 +1,138 @@
-html {
-    background-color: darkblue;
-    color: aliceblue;
+* {
+    margin: auto 0px;
+    padding: 0px;
+}
+
+h1 {
+    text-align: center;
+    margin: 25px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+#reg_box, #login_box {
+    align-items: flex-start;
+    background-color: slategray;
+    padding: 50px;
+    width: 400px;
+    margin: 25px;
+    color: white;
+}
+
+#reg_box > h2 {
+    color: lawngreen;
+}
+
+#login_box > h2 {
+    color: cyan;
+}
+
+.form-control {
+    width: 250px;
+    margin-bottom: 15px;
+}
+
+#confirm {
+    margin-top: 15px;
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+#popup {
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 15pt;
+    background-color: indianred;
+    color: white;
+    padding: 20px;
+}
+
+.wrapper {
+    margin: auto;
+    width: 1100px;
+    background-color: slategray;
+    color: white;
+    padding: 30px;
+}
+
+.link {
+    text-align: center;
+}
+
+.link > a {
+    margin: 0 5px;
+    font-size: 16pt;
+}
+
+.nav_bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 22pt;
+    align-items: baseline;
+    padding: 15px 10px 0px 10px;
+    margin-bottom: 25px;
+}
+
+.nav_bar > h1 {
+    margin: 0px 100px 0px 0px;
+}
+
+.nav_bar > h2 {
+    margin: 0px 10px;
+}
+
+a {
+    font-size: 16pt;
+}
+
+.nav_bar > .btn {
+    margin: 0px 10px;
+}
+
+h3 {
+    margin: 0px 50px;
+}
+
+table {
+    margin: 20px 0px;
+    font-size: 14pt;
+}
+
+.data {
+    display: flex;
+    align-items: start;
+    margin: 0px 50px;
+}
+
+.data > .box {
+    padding: 15px 40px;
+}
+
+#number {
+    margin: 20px 0px;
+}
+
+#sighting_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 20pt;
+}
+
+#sighting_title > h3 {
+    margin-left: 50px;
+}
+
+#sighting_card {
+    padding: 0px 50px 25px;
+    font-size: 17pt;
+}
+
+#sighting_card > p {
+    margin-top: 35px;
 }
