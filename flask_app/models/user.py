@@ -5,7 +5,6 @@ from flask import flash, session
 import re
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
-# The above is used when we do login registration, be sure to install flask-bcrypt: pipenv install flask-bcrypt
 
 
 class User:
@@ -23,7 +22,7 @@ class User:
         self.last_name = data['last_name']
         self.email = data['email']
         self.password = data['password']
-        self.recipes = []
+        self.instruments = []
         # What changes need to be made above for this project?
         #What needs to be added her for class association?
 
