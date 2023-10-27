@@ -8,10 +8,10 @@ h1 {
     margin: 25px;
 }
 
-.container {
+/* .container {
     display: flex;
     justify-content: center;
-}
+} */
 
 #reg_box, #login_box {
     align-items: flex-start;
@@ -104,15 +104,15 @@ table {
     font-size: 14pt;
 }
 
-.data {
+/* .data {
     display: flex;
     align-items: start;
     margin: 0px 50px;
-}
+} */
 
-.data > .box {
+/* .data > .box {
     padding: 15px 40px;
-}
+} */
 
 #number {
     margin: 20px 0px;
