@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,9 +22,9 @@
             </div>
             {% endif %}
         {% endwith %}
-        <div id="reg_box">
+        <div class="card" id="reg_box">
             <h2>Register</h2>
-            <form action="/users/create" method="post">
+            <form action="/users/create" method="post" class="card-body">
                 <label>
                     First Name:
                     <input type="text" name="first_name" class="form-control">
@@ -48,9 +48,9 @@
                 <input type="submit" value="Register" class="btn btn-success">
             </form>
         </div>
-        <div id="login_box">
+        <div class="card" id="login_box">
             <h2>Login</h2>
-            <form action="/users/login" method="post">
+            <form action="/users/login" method="post" class="card-body">
                 <label>
                     Email:
                     <input type="email" name="email" class="form-control">
@@ -61,6 +61,13 @@
                 </label>
                 <input type="submit" value="Login" class="btn btn-primary">
             </form>
+            <hr>
+            <div class="card-body">
+                <p>line 1</p>
+                <p>line 2</p>
+                <p>line 3</p>
+                <p>line 4</p>
+            </div>
         </div>
     </div>
 </body>

@@ -33,6 +33,7 @@ h1 {
 .form-control {
     width: 250px;
     margin-bottom: 15px;
+    background-color: white;
 }
 
 #confirm {
@@ -54,7 +55,7 @@ h1 {
 
 .wrapper {
     margin: auto;
-    width: 1100px;
+    width: 800px;
     background-color: slategray;
     color: white;
     padding: 30px;

@@ -7,7 +7,7 @@ from flask_app.models import user # import entire file, rather than class, to av
 def create_user():
     user_id = user.User.create_new_user(request.form)
     if user_id:
-        return redirect('/dashboard')      
+        return redirect('/home')      
     return redirect('/')
 
 
@@ -19,7 +19,7 @@ def index():
 @app.route('/users/login', methods=['POST'])
 def login_user():
     if user.User.login_user(request.form):
-        return redirect('/dashboard')
+        return redirect('/home')
     return redirect('/')
 
 @app.route('/users/logout')
