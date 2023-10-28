@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,21 +10,24 @@
     <title>Instrument Card</title>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="container style: w-75">
         <div class="nav_bar">
             <h1>Instrument Name - Name of Posted</h1>
-            <h2>{{ session.name }}</h2>
             <a href="/dashboard" class="btn btn-warning">Dashboard</a>
             <a href="/users/logout" class="btn btn-primary">Logout</a>
         </div>
-        <div id="sighting_title">
-            <h3>{{ instrument.location }} on {{ month }} {{ instrument.date_seen.day }}, {{ instrument.date_seen.year }}</h3>
-        </div>
-        <div id="sighting_card">
-            <p>What Happened:</p>
-            <p>{{ instrument.description }}</p>
-            <p># of Sasquatches: {{ instrument.number }}</p>
-            <p>Reported By: {{ instrument.reporter.first_name }} {{ instrument.reporter.last_name }}</p>
+        <div class="card">
+            <div class="card-body d-flex justify-content-around">
+                <div>
+                    <p>Condition</p>
+                    <p>Price</p>
+                    <p>Description</p>
+                </div>
+                <div>
+                    <p>Pic</p>
+                    <button class="btn btn-warning">Purchase instrument</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -1,7 +1,6 @@
 from flask_app import app
 from flask import render_template, redirect, request, session
 from flask_app.models import instrument
-import calendar
 
 # Create Instruments Controller
 @app.route('/instruments/new', methods=['POST', 'GET'])
@@ -18,8 +17,8 @@ def create_instrument():
 @app.route('/home')
 def show_user_instruments():
     # if 'user_id' not in session: return redirect('/')
-    all_instruments = instrument.Instrument.get_all_instruments_with_users()
-    return render_template('dashboard.html', instruments = all_instruments)
+    user_instruments = instrument.Instrument.get_all_instruments_with_users()
+    return render_template('home.html', user_instruments = user_instruments)
 
 @app.route('/instruments/all')
 def show_all_instruments():
@@ -31,8 +30,7 @@ def show_all_instruments():
 def instrument_card(id):
     # if 'user_id' not in session: return redirect('/')
     this_instrument = instrument.Instrument.get_instrument_by_id(id)
-    month = calendar.month_name[this_instrument.date_seen.month]
-    return render_template('one_instrument.html', instrument = this_instrument, month = month)
+    return render_template('one_instrument.html', instrument = this_instrument)
 
 
 # Update Instruments Controller

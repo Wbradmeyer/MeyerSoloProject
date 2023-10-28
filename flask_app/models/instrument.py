@@ -8,14 +8,14 @@ class Instrument:
     db = "solo_project_db"
     def __init__(self, data):
         self.id = data['id']
-        self.location = data['location']
+        self.name = data['name']
+        self.quality = data['quality']
+        self.price = data['price']
         self.description = data['description']
-        self.date_seen = data['date_seen']
-        self.number = data['number']
         self.user_id = data['user_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.reporter = None
+        self.posted_by = None
 
 
     #Create Instruments Models
@@ -24,8 +24,8 @@ class Instrument:
         if not cls.validate_instrument(data):
             return False
         query = """
-        INSERT INTO instruments (location, description, date_seen, number, user_id)
-        VALUES (%(location)s, %(description)s, %(date_seen)s, %(number)s, %(user_id)s)
+        INSERT INTO instruments (name, quality, price, description, user_id)
+        VALUES (%(name)s, %(quality)s, %(price)s, %(description)s, %(user_id)s)
         ;"""
         instrument_id = connectToMySQL(cls.db).query_db(query, data)
         return instrument_id
@@ -42,7 +42,7 @@ class Instrument:
         ;"""
         result = connectToMySQL(cls.db).query_db(query, data)
         this_instrument = cls(result[0])
-        this_instrument.reporter = user.User(result[0])
+        this_instrument.posted_by = user.User(result[0])
         return this_instrument
 
     @classmethod
@@ -56,7 +56,7 @@ class Instrument:
         if results:
             for row in results:
                 this_instrument = cls(row)
-                this_instrument.reporter = user.User(row)
+                this_instrument.posted_by = user.User(row)
                 all_instruments.append(this_instrument)
         return all_instruments
 
@@ -67,8 +67,8 @@ class Instrument:
             return False
         query = """
         UPDATE instruments
-        SET location = %(location)s, description = %(description)s,
-                    date_seen = %(date_seen)s, number = %(number)s
+        SET name = %(name)s, quality = %(quality)s,
+                    price = %(price)s, description = %(description)s
         WHERE id = %(id)s
         ;"""
         connectToMySQL(cls.db).query_db(query, data)
@@ -78,11 +78,11 @@ class Instrument:
     @classmethod
     def delete_instrument_by_id(cls, id):
         data = {'id': id}
-        this_instrument = cls.get_sighting_by_id(id)
+        this_instrument = cls.get_instrument_by_id(id)
         if session['user_id'] != this_instrument.user_id:
             return False
         query = """
-        DELETE FROM sightings
+        DELETE FROM instruments
         WHERE id = %(id)s
         ;"""
         connectToMySQL(cls.db).query_db(query, data)
@@ -92,17 +92,21 @@ class Instrument:
     @staticmethod
     def validate_instrument(data):
         is_valid = True
-        if len(data['location']) == 0:
-            flash('Please add a location.')
+        instr_list = ["Keyboard", "Trumpet", "Trombone", "Tuba", "Violin", 
+                    "Viola", "Cello", "Flute", "Clarinet", "Oboe", "Saxophone"]
+        quality_list = ["New", "Excellent", "Very Good", "Good", "Fair"]
+
+        if data['name'] not in instr_list:
+            flash('Please select one of the given instruments.')
             is_valid = False
-        if len(data['description']) < 2:
+        if data['quality'] not in quality_list:
+            flash('Please select one of the given conditions.')
+            is_valid = False
+        if int(data['price']) < 1 or int(data['price']) > 100000:
+            flash('Price must be between $1 and $99999.')
+            is_valid = False
+        if len(data['description']) < 3:
             flash('Description must be at least 3 characters.')
-            is_valid = False
-        if data['date_seen'] == '':
-            flash('Please select the date sighted.')
-            is_valid = False
-        if data['number'] == '0':
-            flash('Number of sasquatches must be at least 1. Are you on the right page?')
             is_valid = False
 
         return is_valid
