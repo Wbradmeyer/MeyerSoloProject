@@ -27,7 +27,7 @@ def show_user_instruments():
 def show_all_instruments():
     # if 'user_id' not in session: return redirect('/')
     all_instruments = instrument.Instrument.get_all_instruments_with_users()
-    return render_template('dashboard.html', instruments = all_instruments)
+    return render_template('display_all.html', instruments = all_instruments)
 
 @app.route('/instruments/<int:id>')
 def instrument_card(id):

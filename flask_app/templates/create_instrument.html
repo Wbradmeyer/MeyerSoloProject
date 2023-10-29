@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- <div class="wrapper"> -->
-    <div class="container style: w-75">
+    <div class="container" style="width: 900px;">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
             <div id="popup">
@@ -30,7 +30,7 @@
         <div>
             <div class="card">
                 <form action="/instruments/new" method="post" class="card-body d-flex justify-content-around">
-                    <div class="box">
+                    <div>
                         <!-- replace box -->
                         <input type="hidden" name="user_id" value="{{ session.user_id }}">
                         <div class="form-group">
@@ -68,15 +68,20 @@
                             </label>
                         </div>
                     </div>
-                    <div class="box">
+                    <div>
                         <!-- replace box -->
                         <div class="form-group">
                             <label for="description">
                                 Description:
-                                <textarea name="description" id="description" class="form-control" style="height: 125px; width: 300px;">{{ data.description }}</textarea>
+                                <textarea name="description" id="description" class="form-control" style="height: 100px; width: 300px;">{{ data.description }}</textarea>
                             </label>
                         </div>
-                        <!-- allow to add an img -->
+                        <div class="form-group">
+                            <label for="pic" style=>Add a Picture:
+                                <br>
+                                <input type="file" name="pic">
+                            </label>
+                        </div>
                         <button type="submit" class="btn btn-success">Create Post</button>
                     </div>
                 </form>

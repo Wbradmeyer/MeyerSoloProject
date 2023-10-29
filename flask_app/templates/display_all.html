@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script> -->
+    <title>All Instruments</title>
+</head>
+<body>
+    <div class="container" style="width: 950px;">
+        <div class="nav_bar">
+            <h1>All Instruments</h1>
+            <a href="/home" class="btn btn-light">Home</a>
+            <a href="/users/logout" class="btn btn-primary">Logout</a>
+        </div>
+        <div class="card" style="background-color: darkslategrey;">
+            {% for instrument in instruments %}
+                <div class="card-body" style="border: 1px solid;">
+                    <p>{{ instrument.name }}</p>
+                    <p>Condition - {{ instrument.quality }}</p>
+                    <p>Price - ${{ instrument.price }}</p>
+                    <p>Seller - {{ instrument.posted_by.first_name }} 
+                        {{ instrument.posted_by.last_name[0] }}.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
