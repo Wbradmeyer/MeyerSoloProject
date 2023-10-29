@@ -10,24 +10,34 @@
     <title>Instrument Card</title>
 </head>
 <body>
-    <div class="container style: w-50">
+    <div class="container" style="width: 800px;">
         <div class="nav_bar">
-            <h1>{{ instrument.name }} - {{ instrument.posted_by.first_name }} 
-                {{ instrument.posted_by.last_name[0] }}.
+            <h1>{{ instrument.name }} - {{ instrument.owner.first_name }} 
+                {{ instrument.owner.last_name[0] }}.
             </h1>
             <a href="/home" class="btn btn-light">Home</a>
             <a href="/users/logout" class="btn btn-primary">Logout</a>
         </div>
-        <div class="card">
-            <div class="card-body d-flex justify-content-around">
-                <div>
-                    <p>Condition: {{ instrument.quality }}</p>
-                    <p>Price: ${{ instrument.price }}</p>
-                    <p>Description: {{ instrument.description }}</p>
-                </div>
-                <div>
-                    <p>Pic</p>
-                    <button class="btn btn-success">Purchase instrument</button>
+        <div class="card" style="background-color: darkslategrey;">
+            <div class="card-body">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-around">
+                        <div>
+                            <p>Condition: {{ instrument.quality }}</p>
+                            <p>Price: ${{ instrument.price }}</p>
+                            <p>Description: {{ instrument.description }}</p>
+                        </div>
+                        <div>
+                            <p>
+                                <img src="{{ instrument.picture }}" class="image"/>
+                            </p>
+                            {% if instrument.user_id != session.user_id: %}
+                                <form action="/instruments/purchase/{{ instrument.id }}" method="post">
+                                    <button type="submit" class="btn btn-success">Purchase instrument</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -28,14 +28,15 @@
             <a href="/users/logout" class="btn btn-primary">Logout</a>
         </div>
         <div>
-            <div class="card">
+            <div class="card" style="background-color: darkslategrey;">
                 <form action="/instruments/new" method="post" class="card-body d-flex justify-content-around">
                     <div>
                         <!-- replace box -->
                         <input type="hidden" name="user_id" value="{{ session.user_id }}">
+                        <input type="hidden" name="seller_id" value="{{ session.user_id }}">
                         <div class="form-group">
-                            <label for="name">Instrument Type:
-                                <select name="name" id="name" class="btn btn-info">
+                            <label for="name" class="form-label">Instrument Type:
+                                <select name="name" id="name" class="btn btn-info d-block">
                                     <option value="Keyboard" selected>Keyboard</option>
                                     <option value="Trumpet">Trumpet</option>
                                     <option value="Trombone">Trombone</option>
@@ -51,9 +52,9 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label for="quality">Condition:
+                            <label for="quality" class="form-label">Condition:
                                 <!-- condition is a reserved word in MySQL, changed this to quality -->
-                                <select name="quality" id="quality" class="btn btn-info">
+                                <select name="quality" id="quality" class="btn btn-info d-block">
                                     <option value="New" selected>New</option>
                                     <option value="Excellent">Excellent</option>
                                     <option value="Very Good">Very Good</option>
@@ -77,9 +78,9 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label for="pic" style=>Add a Picture:
+                            <label for="picture" style=>Add a Picture:
                                 <br>
-                                <input type="file" name="pic">
+                                <input type="file" name="picture">
                             </label>
                         </div>
                         <button type="submit" class="btn btn-success">Create Post</button>

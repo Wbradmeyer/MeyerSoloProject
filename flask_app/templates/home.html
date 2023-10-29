@@ -31,7 +31,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for instrument in posted_instruments %}
+                        {% for instrument in owned_instruments %}
                         <tr>
                             <th scope="row">{{ loop.index }}</th>
                             <td><a href="/instruments/{{ instrument.id }}">{{ instrument.name }}</a></td>
@@ -55,13 +55,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for instrument in purchased %}
                         <tr>
                             <th scope="row">1</th>
-                            <td>for each</td>
-                            <td>col</td>
-                            <td>in row</td>
-                            <td></td>
+                            <td>{{ instrument.name }}</td>
+                            <td>{{ instrument.quality }}</td>
+                            <td>{{ instrument.price }}</td>
+                            <td>{{ instrument.seller.first_name }} {{ instrument.seller.last_name[0] }}</td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

@@ -10,22 +10,31 @@
     <title>All Instruments</title>
 </head>
 <body>
-    <div class="container" style="width: 950px;">
+    <div class="container" style="width: 850px;">
         <div class="nav_bar">
             <h1>All Instruments</h1>
             <a href="/home" class="btn btn-light">Home</a>
             <a href="/users/logout" class="btn btn-primary">Logout</a>
         </div>
         <div class="card" style="background-color: darkslategrey;">
-            {% for instrument in instruments %}
-                <div class="card-body" style="border: 1px solid;">
-                    <p>{{ instrument.name }}</p>
-                    <p>Condition - {{ instrument.quality }}</p>
-                    <p>Price - ${{ instrument.price }}</p>
-                    <p>Seller - {{ instrument.posted_by.first_name }} 
-                        {{ instrument.posted_by.last_name[0] }}.</p>
-                </div>
-            {% endfor %}
+            <div class="card-body d-flex flex-wrap justify-content-around">
+                {% for instrument in instruments %}
+                    <div class="card" style="margin: 10px 0px; width: 370px;">
+                        <div class="card-body d-flex">
+                            <div style="margin-right: 10px;">
+                                <p><a href="/instruments/{{ instrument.id }}">{{ instrument.name }}</a></p>
+                                <p>Condition - {{ instrument.quality }}</p>
+                                <p>Price - ${{ instrument.price }}</p>
+                                <p>Seller - {{ instrument.owner.first_name }} 
+                                    {{ instrument.owner.last_name[0] }}.</p>
+                            </div>
+                            <div>
+                                <img src="{{ instrument.picture }}" class="image"/>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </body>

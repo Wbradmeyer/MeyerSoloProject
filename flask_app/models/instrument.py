@@ -12,10 +12,13 @@ class Instrument:
         self.quality = data['quality']
         self.price = data['price']
         self.description = data['description']
+        self.picture = data['picture']
         self.user_id = data['user_id']
+        self.seller_id = data['seller_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.posted_by = None
+        self.owner = None
+        self.seller = None
         self.sold = False
 
 
@@ -25,8 +28,10 @@ class Instrument:
         if not cls.validate_instrument(data):
             return False
         query = """
-        INSERT INTO instruments (name, quality, price, description, user_id)
-        VALUES (%(name)s, %(quality)s, %(price)s, %(description)s, %(user_id)s)
+        INSERT INTO instruments (name, quality, price, description, 
+                    picture, user_id, seller_id)
+        VALUES (%(name)s, %(quality)s, %(price)s, %(description)s, 
+                    %(picture)s, %(user_id)s, %(seller_id)s)
         ;"""
         instrument_id = connectToMySQL(cls.db).query_db(query, data)
         return instrument_id
@@ -43,7 +48,7 @@ class Instrument:
         ;"""
         result = connectToMySQL(cls.db).query_db(query, data)
         this_instrument = cls(result[0])
-        this_instrument.posted_by = user.User(result[0])
+        this_instrument.owner = user.User(result[0])
         return this_instrument
 
     @classmethod
@@ -57,7 +62,7 @@ class Instrument:
         if results:
             for row in results:
                 this_instrument = cls(row)
-                this_instrument.posted_by = user.User(row)
+                this_instrument.owner = user.User(row)
                 all_instruments.append(this_instrument)
         return all_instruments
 
@@ -77,11 +82,29 @@ class Instrument:
             return False
         query = """
         UPDATE instruments
-        SET name = %(name)s, quality = %(quality)s,
-                    price = %(price)s, description = %(description)s
+        SET name = %(name)s, quality = %(quality)s, price = %(price)s, 
+                    description = %(description)s, picture = %(picture)s
         WHERE id = %(id)s
         ;"""
         connectToMySQL(cls.db).query_db(query, data)
+        return True
+    
+    @classmethod
+    def change_owner(cls, id):
+        data = {'id': id,
+                'user_id': session['user_id']}
+        this_instrument = cls.get_instrument_by_id(id)
+        if session['user_id'] != this_instrument.user_id:
+            return False
+        query = """
+        UPDATE instruments
+        SET user_id = %(user_id)s
+        WHERE id = %(id)s
+        ;"""
+        connectToMySQL(cls.db).query_db(query, data)
+        this_user = user.User.get_user_by_id(session['user_id'])
+        this_instrument.seller = this_user
+        this_instrument.sold = True
         return True
 
     # Delete Instruments Models
