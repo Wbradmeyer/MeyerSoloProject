@@ -2,6 +2,7 @@
 from flask_app import app
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash, session
+from flask_app.models import instrument
 import re
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
@@ -22,7 +23,8 @@ class User:
         self.last_name = data['last_name']
         self.email = data['email']
         self.password = data['password']
-        self.instruments = []
+        self.posted_instruments = []
+        self.purchased_instruments = []
         # What changes need to be made above for this project?
         #What needs to be added her for class association?
 
@@ -41,6 +43,7 @@ class User:
         ;"""
         user_id = connectToMySQL(cls.db).query_db(query, data)
         session['user_id'] = user_id
+        # session['first_name'] = f'{data["first_name"]}'
         session['name'] = f'{data["first_name"]} {data["last_name"]}'
         return user_id
 
@@ -56,6 +59,7 @@ class User:
         result = connectToMySQL(cls.db).query_db(query, data)
         return cls(result[0])
 
+    @classmethod
     def get_user_by_email(cls, email):
         user_data = {'email' : email}
         query = """
@@ -80,6 +84,7 @@ class User:
         if this_user:
             if bcrypt.check_password_hash(this_user.password, data['password']):
                 session['user_id'] = this_user.id
+                # session['first_name'] = this_user.first_name
                 session['name'] = f'{this_user.first_name} {this_user.last_name}'
                 return True
         flash('The email or password entered does not match our records.')

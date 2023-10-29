@@ -17,8 +17,11 @@ def create_instrument():
 @app.route('/home')
 def show_user_instruments():
     # if 'user_id' not in session: return redirect('/')
-    user_instruments = instrument.Instrument.get_all_instruments_with_users()
-    return render_template('home.html', user_instruments = user_instruments)
+    all_instruments = instrument.Instrument.get_all_instruments_with_users()
+    posted_instruments = [x for x in all_instruments if x.user_id == session['user_id']]
+    # print('*****************************************', session['first_name'])
+    # purchased = [x for x in all_instruments if x.seller_id == ]
+    return render_template('home.html', posted_instruments = posted_instruments)
 
 @app.route('/instruments/all')
 def show_all_instruments():

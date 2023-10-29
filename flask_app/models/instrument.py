@@ -16,6 +16,7 @@ class Instrument:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.posted_by = None
+        self.sold = False
 
 
     #Create Instruments Models
@@ -59,6 +60,15 @@ class Instrument:
                 this_instrument.posted_by = user.User(row)
                 all_instruments.append(this_instrument)
         return all_instruments
+
+    # @classmethod
+    # def get_all_instruments_by_post_user(cls, user_id):
+    #     data = {'user_id': user_id}
+    #     query = """
+    #     SELECT * FROM instruments
+    #     JOIN users ON instruments.user_id = users.id
+    #     WHERE user_id = %(user_id)s
+    #     ;"""
 
     # Update Instruments Models
     @classmethod
