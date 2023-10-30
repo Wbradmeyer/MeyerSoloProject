@@ -23,8 +23,8 @@ class User:
         self.last_name = data['last_name']
         self.email = data['email']
         self.password = data['password']
-        self.posted_instruments = []
-        self.purchased_instruments = []
+        self.posted = []
+        self.purchased = []
         # What changes need to be made above for this project?
         #What needs to be added her for class association?
 

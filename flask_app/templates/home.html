@@ -32,13 +32,23 @@
                     </thead>
                     <tbody>
                         {% for instrument in owned_instruments %}
-                        <tr>
-                            <th scope="row">{{ loop.index }}</th>
-                            <td><a href="/instruments/{{ instrument.id }}">{{ instrument.name }}</a></td>
-                            <td>{{ instrument.quality }}</td>
-                            <td>${{ instrument.price }}</td>
-                            <td>{{ instrument.sold }}</td>
-                        </tr>
+                            {% if instrument.sold != 0 %}
+                                <tr class="table-danger">
+                                    <th scope="row">{{ loop.index }}</th>
+                                    <td><a href="/instruments/{{ instrument.id }}">{{ instrument.name }}</a></td>
+                                    <td>{{ instrument.quality }}</td>
+                                    <td>${{ instrument.price }}</td>
+                                    <td>Yes</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <th scope="row">{{ loop.index }}</th>
+                                    <td><a href="/instruments/{{ instrument.id }}">{{ instrument.name }}</a></td>
+                                    <td>{{ instrument.quality }}</td>
+                                    <td>${{ instrument.price }}</td>
+                                    <td>No</td>
+                                </tr>
+                            {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>
@@ -61,7 +71,7 @@
                             <td>{{ instrument.name }}</td>
                             <td>{{ instrument.quality }}</td>
                             <td>{{ instrument.price }}</td>
-                            <td>{{ instrument.seller.first_name }} {{ instrument.seller.last_name[0] }}</td>
+                            <td>{{ instrument.seller.first_name }} {{ instrument.seller.last_name[0] }}.</td>
                         </tr>
                         {% endfor %}
                     </tbody>

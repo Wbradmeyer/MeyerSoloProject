@@ -19,9 +19,10 @@ def create_instrument():
 def show_user_instruments():
     # if 'user_id' not in session: return redirect('/')
     all_instruments = instrument.Instrument.get_all_instruments_with_users()
-    owned_instruments = [inst for inst in all_instruments if inst.user_id == session['user_id']]
+    owned_instruments = [inst for inst in all_instruments if inst.seller_id == session['user_id']]
     # print('*****************************************', session['first_name'])
-    purchased = [inst for inst in all_instruments if inst.user_id == session['user_id'] and inst.sold == True]
+    sold_instruments = instrument.Instrument.get_all_instruments_with_sellers()
+    purchased = [inst for inst in sold_instruments if inst.user_id == session['user_id']]
     return render_template('home.html', owned_instruments = owned_instruments, purchased = purchased)
 
 @app.route('/instruments/all')
@@ -55,11 +56,8 @@ def edit_instrument(id):
 @app.route('/instruments/purchase/<int:id>', methods=['POST'])
 def purchase_instrument(id):
     # if 'user_id' not in session: return redirect('/')
-    purchased = instrument.Instrument.change_owner(id)
-    if purchased:
-        return redirect('/home')
-    else:
-        return redirect('/home')
+    instrument.Instrument.change_owner(id)
+    return redirect('/home')
 
 
 # Delete Instruments Controller

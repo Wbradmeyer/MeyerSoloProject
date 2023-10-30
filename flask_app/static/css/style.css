@@ -48,14 +48,6 @@ h1 {
     padding: 20px;
 }
 
-.wrapper {
-    margin: auto;
-    width: 800px;
-    background-color: slategray;
-    color: white;
-    padding: 30px;
-}
-
 .link {
     text-align: center;
 }
@@ -84,38 +76,4 @@ h1 {
 
 .nav_bar > .btn {
     margin: 0px 10px;
-}
-
-h3 {
-    margin: 0px 50px;
-}
-
-table {
-    margin: 20px 0px;
-    font-size: 14pt;
-}
-
-
-#number {
-    margin: 20px 0px;
-}
-
-#sighting_title {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    font-size: 20pt;
-}
-
-#sighting_title > h3 {
-    margin-left: 50px;
-}
-
-#sighting_card {
-    padding: 0px 50px 25px;
-    font-size: 17pt;
-}
-
-#sighting_card > p {
-    margin-top: 35px;
 }

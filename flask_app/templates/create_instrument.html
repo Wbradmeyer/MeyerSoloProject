@@ -10,7 +10,6 @@
     <title>Create Instrument</title>
 </head>
 <body>
-    <!-- <div class="wrapper"> -->
     <div class="container" style="width: 900px;">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -31,9 +30,9 @@
             <div class="card" style="background-color: darkslategrey;">
                 <form action="/instruments/new" method="post" class="card-body d-flex justify-content-around">
                     <div>
-                        <!-- replace box -->
                         <input type="hidden" name="user_id" value="{{ session.user_id }}">
                         <input type="hidden" name="seller_id" value="{{ session.user_id }}">
+                        <input type="hidden" name="sold" value="0">
                         <div class="form-group">
                             <label for="name" class="form-label">Instrument Type:
                                 <select name="name" id="name" class="btn btn-info d-block">
@@ -70,7 +69,6 @@
                         </div>
                     </div>
                     <div>
-                        <!-- replace box -->
                         <div class="form-group">
                             <label for="description">
                                 Description:
