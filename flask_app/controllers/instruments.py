@@ -49,7 +49,10 @@ def edit_instrument(id):
             return redirect('/home')
     instrument_to_update = instrument.Instrument.get_instrument_by_id(id)
     if instrument_to_update.user_id == session['user_id']:
-        return render_template('edit_instrument.html', instrument = instrument_to_update)
+        inst_select = instrument.Instrument.get_instrument_select()
+        quality_select = instrument.Instrument.get_quality_select()
+        return render_template('edit_instrument.html', instrument = instrument_to_update, 
+                            inst_select = inst_select, quality_select = quality_select)
     else:
         return redirect('/users/logout')
     

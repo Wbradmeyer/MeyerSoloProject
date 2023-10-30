@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script> -->
+    <title>Create Instrument</title>
+</head>
+<body>
+    <div class="container" style="width: 900px;">
+        <div class="nav_bar">
+            <h1>Edit Instrument</h1>
+            <a href="/home" class="btn btn-warning">Home</a>
+            <a href="/users/logout" class="btn btn-primary">Logout</a>
+        </div>
+        <div>
+            <div class="card" style="background-color: darkslategrey;">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div id="popup">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                            <button onclick="popup.remove()" class="btn btn-warning">Okay</button>
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <form action="/instruments/edit/{{ instrument.id }}" method="post" class="card-body d-flex justify-content-around">
+                    <div>
+                        <div class="form-group">
+                            <label for="name" class="form-label">Instrument Type:
+                                <select name="name" id="name" class="btn btn-info d-block">
+                                    {% for inst in inst_select %}
+                                    <option value="{{ inst.inst_name }}" {% if inst.inst_name == instrument.name %}
+                                        selected {% endif %}>{{ inst.inst_name }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="quality" class="form-label">Condition:
+                                <!-- condition is a reserved word in MySQL, changed this to quality -->
+                                <select name="quality" id="quality" class="btn btn-info d-block">
+                                    {% for qual in quality_select %}
+                                    <option value="{{ qual.quality }}" {% if qual.quality == instrument.quality %} 
+                                        selected {% endif %}>{{ qual.quality }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price:
+                                <input type="number" name="price" value="{{instrument.price }}" class="form-control">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label for="description">
+                                Description:
+                                <textarea name="description" id="description" value="{{ instrument.description }}" class="form-control" style="height: 100px; width: 300px;">{{ instrument.description }}</textarea>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="picture" style=>Add a Picture:
+                                <br>
+                                <input type="file" name="picture">
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-success">Create Post</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

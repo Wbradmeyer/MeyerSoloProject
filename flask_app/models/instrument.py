@@ -131,11 +131,11 @@ class Instrument:
     @staticmethod
     def validate_instrument(data):
         is_valid = True
-        instr_list = ["Keyboard", "Trumpet", "Trombone", "Tuba", "Violin", 
+        inst_list = ["Keyboard", "Trumpet", "Trombone", "Tuba", "Violin", 
                     "Viola", "Cello", "Flute", "Clarinet", "Oboe", "Saxophone"]
         quality_list = ["New", "Excellent", "Very Good", "Good", "Fair"]
 
-        if data['name'] not in instr_list:
+        if data['name'] not in inst_list:
             flash('Please select one of the given instruments.')
             is_valid = False
         if data['quality'] not in quality_list:
@@ -149,3 +149,31 @@ class Instrument:
             is_valid = False
 
         return is_valid
+    
+    @staticmethod
+    def get_instrument_select():
+        inst_list = [
+            {"inst_name": "Keyboard"}, 
+            {"inst_name": "Trumpet"}, 
+            {"inst_name": "Trombone"}, 
+            {"inst_name": "Tuba"}, 
+            {"inst_name": "Violin"}, 
+            {"inst_name": "Viola"}, 
+            {"inst_name": "Cello"}, 
+            {"inst_name": "Flute"}, 
+            {"inst_name": "Clarinet"}, 
+            {"inst_name": "Oboe"}, 
+            {"inst_name": "Saxophone"}
+        ]
+        return inst_list
+
+    @staticmethod
+    def get_quality_select():
+        quality_list = [
+            {"quality": "New"}, 
+            {"quality": "Excellent"}, 
+            {"quality": "Very Good"}, 
+            {"quality": "Good"}, 
+            {"quality": "Fair"}
+        ]
+        return quality_list

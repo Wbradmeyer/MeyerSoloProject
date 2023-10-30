@@ -11,16 +11,6 @@
 </head>
 <body>
     <div class="container" style="width: 900px;">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <div id="popup">
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
-                <button onclick="popup.remove()" class="btn btn-warning">Okay</button>
-            </div>
-            {% endif %}
-        {% endwith %}
         <div class="nav_bar">
             <h1>New Instrument</h1>
             <a href="/home" class="btn btn-warning">Home</a>
@@ -28,6 +18,16 @@
         </div>
         <div>
             <div class="card" style="background-color: darkslategrey;">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div id="popup">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                            <button onclick="popup.remove()" class="btn btn-warning">Okay</button>
+                        </div>
+                    {% endif %}
+                {% endwith %}
                 <form action="/instruments/new" method="post" class="card-body d-flex justify-content-around">
                     <div>
                         <input type="hidden" name="user_id" value="{{ session.user_id }}">

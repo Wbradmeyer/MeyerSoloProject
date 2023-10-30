@@ -12,17 +12,17 @@
 <body>
     <h1>Instrument Hub</h1>
     <div class="container d-flex justify-content-center">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <div id="popup">
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
-                <button onclick="popup.remove()" class="btn btn-warning">Okay</button>
-            </div>
-            {% endif %}
-        {% endwith %}
         <div class="card" id="reg_box">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div id="popup">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                        <button onclick="popup.remove()" class="btn btn-warning">Okay</button>
+                    </div>
+                {% endif %}
+            {% endwith %}
             <h2>Register</h2>
             <form action="/users/create" method="post" class="card-body">
                 <label>
