@@ -24,20 +24,19 @@ class Instrument:
 
     #Create Instruments Models
     @classmethod
-    def create_new_instrument(cls, data, image_file):
+    def create_new_instrument(cls, data):
         if not cls.validate_instrument(data):
             return False
-        data['image'] = image_file
         query = """
-        INSERT INTO instruments (name, quality, price, description, image,
+        INSERT INTO instruments (name, quality, price, description,
                     sold, user_id, seller_id)
-        VALUES (%(name)s, %(quality)s, %(price)s, %(description)s, %(image)s,
+        VALUES (%(name)s, %(quality)s, %(price)s, %(description)s,
                     %(sold)s, %(user_id)s, %(seller_id)s)
         ;"""
         instrument_id = connectToMySQL(cls.db).query_db(query, data)
         return instrument_id
     
-
+    
     #Read Instruments Models
     @classmethod
     def get_instrument_by_id(cls, id):
@@ -114,6 +113,19 @@ class Instrument:
         ;"""
         connectToMySQL(cls.db).query_db(query, data)
         return True
+    
+    @classmethod
+    def add_image_to_db_by_id(cls, id, image):
+        data = {'id': id,
+                'image': image}
+        query = """
+        UPDATE instruments
+        SET image = %(image)s
+        WHERE instruments.id = %(id)s 
+        ;"""
+        connectToMySQL(cls.db).query_db(query, data)
+        return True
+
 
     # Delete Instruments Models
     @classmethod

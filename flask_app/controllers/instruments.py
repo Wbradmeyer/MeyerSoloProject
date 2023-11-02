@@ -1,6 +1,6 @@
 import os
 from flask_app import app
-from flask import render_template, redirect, request, session, url_for
+from flask import render_template, redirect, request, session, send_from_directory, url_for
 from werkzeug.utils import secure_filename
 from flask_app.models import instrument
 
@@ -15,14 +15,16 @@ def allowed_file(filename):
 def create_instrument():
     # if 'user_id' not in session: return redirect('/')
     if request.method == 'POST':
-        # if image file is present and allowed, save it to the upload folder
-        file = request.files['image']
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        # now create a new instrument passing in the image filename
-        instrument_id = instrument.Instrument.create_new_instrument(request.form, filename)
+        # create a new instrument and retrieve the id
+        instrument_id = instrument.Instrument.create_new_instrument(request.form)
         if instrument_id:
+        # check if image file is present and allowed, save it to the upload folder
+            file = request.files['image']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                # now add the filename to the database
+                instrument.Instrument.add_image_to_db_by_id(instrument_id, filename)
             return redirect('/home')
     return render_template('create_instrument.html', data = request.form)
 
@@ -52,6 +54,11 @@ def instrument_card(id):
     # if 'user_id' not in session: return redirect('/')
     this_instrument = instrument.Instrument.get_instrument_by_id(id)
     return render_template('one_instrument.html', instrument = this_instrument)
+
+@app.route('/instruments/images/<filename>')
+def get_instrument_image(filename):
+    # return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
+    return redirect(url_for('static', filename = 'images/' + filename))
 
 
 # Update Instruments Controller
