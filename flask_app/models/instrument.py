@@ -12,7 +12,7 @@ class Instrument:
         self.quality = data['quality']
         self.price = data['price']
         self.description = data['description']
-        self.picture = data['picture']
+        self.image = data['image']
         self.sold = data['sold']
         self.user_id = data['user_id']
         self.seller_id = data['seller_id']
@@ -24,14 +24,15 @@ class Instrument:
 
     #Create Instruments Models
     @classmethod
-    def create_new_instrument(cls, data):
+    def create_new_instrument(cls, data, image_file):
         if not cls.validate_instrument(data):
             return False
+        data['image'] = image_file
         query = """
-        INSERT INTO instruments (name, quality, price, description, 
-                    picture, sold, user_id, seller_id)
-        VALUES (%(name)s, %(quality)s, %(price)s, %(description)s, 
-                    %(picture)s, %(sold)s, %(user_id)s, %(seller_id)s)
+        INSERT INTO instruments (name, quality, price, description, image,
+                    sold, user_id, seller_id)
+        VALUES (%(name)s, %(quality)s, %(price)s, %(description)s, %(image)s,
+                    %(sold)s, %(user_id)s, %(seller_id)s)
         ;"""
         instrument_id = connectToMySQL(cls.db).query_db(query, data)
         return instrument_id
@@ -50,6 +51,7 @@ class Instrument:
         this_instrument = cls(result[0])
         this_instrument.owner = user.User(result[0])
         return this_instrument
+    
 
     @classmethod
     def get_all_instruments_with_users(cls):
@@ -91,7 +93,7 @@ class Instrument:
         query = """
         UPDATE instruments
         SET name = %(name)s, quality = %(quality)s, price = %(price)s, 
-                    description = %(description)s, picture = %(picture)s
+                    description = %(description)s, image = %(image)s
         WHERE id = %(id)s
         ;"""
         connectToMySQL(cls.db).query_db(query, data)

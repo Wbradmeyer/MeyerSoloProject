@@ -29,7 +29,7 @@
                         </div>
                         <div>
                             <p>
-                                <img src="{{ instrument.picture }}" class="image"/>
+                                <img src="{{ url_for('static/image', id=instrument.id) }}" class="image"/>
                             </p>
                             {% if instrument.user_id != session.user_id: %}
                                 <form action="/instruments/purchase/{{ instrument.id }}" method="post">

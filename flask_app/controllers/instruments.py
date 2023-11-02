@@ -1,14 +1,27 @@
+import os
 from flask_app import app
-from flask import render_template, redirect, request, session
+from flask import render_template, redirect, request, session, url_for
+from werkzeug.utils import secure_filename
 from flask_app.models import instrument
+
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 # Create Instruments Controller
 @app.route('/instruments/new', methods=['POST', 'GET'])
 def create_instrument():
     # if 'user_id' not in session: return redirect('/')
     if request.method == 'POST':
-        # print('**************************', request.form)
-        instrument_id = instrument.Instrument.create_new_instrument(request.form)
+        # if image file is present and allowed, save it to the upload folder
+        file = request.files['image']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # now create a new instrument passing in the image filename
+        instrument_id = instrument.Instrument.create_new_instrument(request.form, filename)
         if instrument_id:
             return redirect('/home')
     return render_template('create_instrument.html', data = request.form)
@@ -19,6 +32,7 @@ def create_instrument():
 def show_user_instruments():
     # if 'user_id' not in session: return redirect('/')
     all_instruments = instrument.Instrument.get_all_instruments_with_users()
+    # REPLACE THIS WITH A QUERY!!!!
     owned_instruments = [inst for inst in all_instruments if inst.seller_id == session['user_id']]
     # print('*****************************************', session['first_name'])
     sold_instruments = instrument.Instrument.get_all_instruments_with_sellers()
@@ -29,6 +43,7 @@ def show_user_instruments():
 def show_all_instruments():
     # if 'user_id' not in session: return redirect('/')
     all_instruments = instrument.Instrument.get_all_instruments_with_users()
+    # REPLACE THIS WITH A QUERY!!!
     instruments_for_sale = [inst for inst in all_instruments if inst.sold == False]
     return render_template('display_all.html', instruments = instruments_for_sale)
 
