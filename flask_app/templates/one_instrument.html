@@ -26,24 +26,25 @@
                             <p>Condition: {{ instrument.quality }}</p>
                             <p>Price: ${{ instrument.price }}</p>
                             <p>Description: {{ instrument.description }}</p>
-                        </div>
-                        <div>
-                            <p>
-                                <img src="{{ url_for('get_instrument_image', filename=instrument.image) }}" 
-                                style="width: auto; height: auto;" class="image"/>
-                            </p>
                             {% if instrument.user_id != session.user_id: %}
                                 <form action="/instruments/purchase/{{ instrument.id }}" method="post">
                                     <button type="submit" class="btn btn-success">Purchase Instrument</button>
                                 </form>
+                            {% else %}
+                                <a href="/instruments/delete/{{ instrument.id }}" class="btn btn-danger">Delete Post</a>
+                                <a href="/instruments/edit/{{ instrument.id }}" class="btn btn-secondary">Edit Post</a>
                             {% endif %}
+                        </div>
+                        <div>
+                            <p>
+                                <img src="{{ url_for('get_instrument_image', filename=instrument.image) }}" 
+                                style="width: auto; height: auto;" class="img-fluid img-thumbnail"/>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <a href="/instruments/delete/{{ instrument.id }}" class="btn btn-danger">Delete Post</a>
-        <a href="/instruments/edit/{{ instrument.id }}" class="btn btn-secondary">Edit Post</a>
         <a href="/instruments/all" class="btn btn-warning">All Instruments</a>
     </div>
 </body>

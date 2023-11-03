@@ -30,6 +30,7 @@
                 {% endwith %}
                 <form action="/instruments/edit/{{ instrument.id }}" method="post" class="card-body d-flex justify-content-around">
                     <div>
+                        <input type="hidden" name="id" value="{{ instrument.id }}">
                         <div class="form-group">
                             <label for="name" class="form-label">Instrument Type:
                                 <select name="name" id="name" class="btn btn-info d-block">
@@ -67,9 +68,9 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label for="picture" style=>Add a Picture:
+                            <label for="image" style=>Change Picture:
                                 <br>
-                                <input type="file" name="image">
+                                <input type="file" name="image" value="{{ url_for('get_instrument_image', filename=instrument.image) }}">
                             </label>
                         </div>
                         <button type="submit" class="btn btn-success">Create Post</button>
