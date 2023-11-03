@@ -28,7 +28,7 @@
                         </div>
                     {% endif %}
                 {% endwith %}
-                <form action="/instruments/edit/{{ instrument.id }}" method="post" class="card-body d-flex justify-content-around">
+                <form action="/instruments/edit/{{ instrument.id }}" method="post" enctype="multipart/form-data" class="card-body d-flex justify-content-around">
                     <div>
                         <input type="hidden" name="id" value="{{ instrument.id }}">
                         <div class="form-group">
@@ -70,7 +70,7 @@
                         <div class="form-group">
                             <label for="image" style=>Change Picture:
                                 <br>
-                                <input type="file" name="image" value="{{ url_for('get_instrument_image', filename=instrument.image) }}">
+                                <input type="file" name="image">
                             </label>
                         </div>
                         <button type="submit" class="btn btn-success">Create Post</button>

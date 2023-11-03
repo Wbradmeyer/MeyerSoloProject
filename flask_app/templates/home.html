@@ -9,7 +9,9 @@
     <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script> -->
     <title>User Home</title>
 </head>
-<body>
+<body style="background-image: url('static/images/staff_background.png'); 
+            background-repeat: no-repeat; background-attachment: fixed;
+            background-size: cover;">
     <div class="container" style="width: 950px;">
         <div class="nav_bar">
             <h1>Welcome, {{ session.name }}!</h1>
@@ -17,7 +19,7 @@
             <a href="instruments/new" class="btn btn-success">New Post</a>
             <a href="/users/logout" class="btn btn-primary">Logout</a>
         </div>
-        <div class="card" style="background-color: darkslategrey;">
+        <div class="card" style="background-color: rgb(3, 114, 114);">
             <div class="card-body">
                 <h2>My Posted</h2>
                 <table class="table table-bordered">

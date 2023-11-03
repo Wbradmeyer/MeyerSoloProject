@@ -68,6 +68,13 @@ def edit_instrument(id):
     if request.method == 'POST':
         updated = instrument.Instrument.update_instrument(request.form)
         if updated:
+        # check if image file is present and allowed, save it to the upload folder
+            file = request.files['image']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                # now add the filename to the database
+                instrument.Instrument.add_image_to_db_by_id(id, filename)
             return redirect('/home')
     # if 'GET' request:
     instrument_to_update = instrument.Instrument.get_instrument_by_id(id)

@@ -92,7 +92,7 @@ class Instrument:
         query = """
         UPDATE instruments
         SET name = %(name)s, quality = %(quality)s, price = %(price)s, 
-                    description = %(description)s, image = %(image)s
+                    description = %(description)s
         WHERE id = %(id)s
         ;"""
         connectToMySQL(cls.db).query_db(query, data)
@@ -104,8 +104,8 @@ class Instrument:
                 'sold': 1,
                 'user_id': session['user_id']}
         this_instrument = cls.get_instrument_by_id(id)
-        # if session['user_id'] != this_instrument.user_id:
-        #     return False
+        if session['user_id'] != this_instrument.user_id:
+            return False
         query = """
         UPDATE instruments
         SET sold = %(sold)s, user_id = %(user_id)s
