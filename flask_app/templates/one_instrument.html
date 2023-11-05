@@ -12,8 +12,8 @@
 <body>
     <div class="container" style="width: 800px;">
         <div class="nav_bar">
-            <h1>{{ instrument.name }} - {{ instrument.owner.first_name }} 
-                {{ instrument.owner.last_name[0] }}.
+            <h1>{{ instrument.name }} - {{ instrument.seller.first_name }} 
+                {{ instrument.seller.last_name[0] }}.
             </h1>
             <a href="/home" class="btn btn-light">Home</a>
             <a href="/users/logout" class="btn btn-primary">Logout</a>
@@ -26,7 +26,9 @@
                             <p>Condition: {{ instrument.quality }}</p>
                             <p>Price: ${{ instrument.price }}</p>
                             <p>Description: {{ instrument.description }}</p>
-                            {% if instrument.user_id != session.user_id: %}
+                            {% if instrument.sold == 1 %}
+                                <p>Sold to: {{ instrument.owner.first_name }} {{ instrument.owner.last_name[0] }}.</p>
+                            {% elif instrument.user_id != session.user_id: %}
                                 <form action="/instruments/purchase/{{ instrument.id }}" method="post">
                                     <button type="submit" class="btn btn-success">Purchase Instrument</button>
                                 </form>

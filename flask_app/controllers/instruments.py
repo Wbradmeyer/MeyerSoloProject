@@ -46,7 +46,7 @@ def show_all_instruments():
     if 'user_id' not in session: return redirect('/') # ***
     all_instruments = instrument.Instrument.get_all_instruments_with_users()
     # REPLACE THIS WITH A QUERY!!!
-    instruments_for_sale = [inst for inst in all_instruments if inst.sold == False]
+    instruments_for_sale = [inst for inst in all_instruments if inst.sold == 0]
     return render_template('display_all.html', instruments = instruments_for_sale)
 
 @app.route('/instruments/<int:id>')
@@ -57,7 +57,6 @@ def instrument_card(id):
 
 @app.route('/instruments/images/<filename>')
 def get_instrument_image(filename):
-    # return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
     return redirect(url_for('static', filename = 'images/' + filename))
 
 

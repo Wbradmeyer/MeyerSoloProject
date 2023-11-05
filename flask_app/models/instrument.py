@@ -103,9 +103,6 @@ class Instrument:
         data = {'id': id,
                 'sold': 1,
                 'user_id': session['user_id']}
-        this_instrument = cls.get_instrument_by_id(id)
-        if session['user_id'] != this_instrument.user_id:
-            return False
         query = """
         UPDATE instruments
         SET sold = %(sold)s, user_id = %(user_id)s
