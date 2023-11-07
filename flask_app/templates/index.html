@@ -9,7 +9,9 @@
     <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script> -->
     <title>Registration/Login</title>
 </head>
-<body>
+<body style="background-image: url('static/images/background.jpg'); 
+            background-repeat: no-repeat; background-attachment: fixed;
+            background-size: cover;">
     <h1>Instrument Hub</h1>
     <div class="container d-flex justify-content-center">
         {% with messages = get_flashed_messages() %}
@@ -61,7 +63,6 @@
                 </label>
                 <input type="submit" value="Login" class="btn btn-primary">
             </form>
-            <hr>
             <div class="card-body">
                 <h5>Need information on what instrument to search for?</h5>
                 <a href="https://www.orsymphony.org/learning-community/instruments/" class="btn btn-info" style="margin-bottom: 10px;">Click Here!</a>

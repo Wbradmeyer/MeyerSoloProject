@@ -43,7 +43,8 @@ class User:
         ;"""
         user_id = connectToMySQL(cls.db).query_db(query, data)
         session['user_id'] = user_id
-        session['name'] = f'{data["first_name"]} {data["last_name"]}'
+        session['name'] = data["first_name"]
+        # session['name'] = f'{data["first_name"]} {data["last_name"]}'
         return user_id
 
 
@@ -83,8 +84,8 @@ class User:
         if this_user:
             if bcrypt.check_password_hash(this_user.password, data['password']):
                 session['user_id'] = this_user.id
-                # session['first_name'] = this_user.first_name
-                session['name'] = f'{this_user.first_name} {this_user.last_name}'
+                session['name'] = this_user.first_name
+                # session['name'] = f'{this_user.first_name} {this_user.last_name}'
                 return True
         flash('The email or password entered does not match our records.')
         return False
