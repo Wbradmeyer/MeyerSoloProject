@@ -74,3 +74,10 @@ h1 {
 .nav_bar > .btn {
     margin: 0px 10px;
 }
+
+#bg_image {
+    background-image: url('background2.jpg'); 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    background-size: cover;
+}
