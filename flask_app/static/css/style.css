@@ -18,11 +18,11 @@ h1 {
 }
 
 #reg_box > h2 {
-    color: lawngreen;
+    color: rgb(83, 243, 155);
 }
 
 #login_box > h2 {
-    color: cyan;
+    color: rgb(21, 215, 215);
 }
 
 .form-control {
@@ -46,6 +46,7 @@ h1 {
     background-color: indianred;
     color: white;
     padding: 20px;
+    z-index: 1;
 }
 
 .link {

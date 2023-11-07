@@ -43,7 +43,6 @@ class User:
         ;"""
         user_id = connectToMySQL(cls.db).query_db(query, data)
         session['user_id'] = user_id
-        # session['first_name'] = f'{data["first_name"]}'
         session['name'] = f'{data["first_name"]} {data["last_name"]}'
         return user_id
 

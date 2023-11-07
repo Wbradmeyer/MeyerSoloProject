@@ -12,17 +12,17 @@
 <body>
     <h1>Instrument Hub</h1>
     <div class="container d-flex justify-content-center">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div id="popup">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                    <button onclick="popup.remove()" class="btn btn-warning">Okay</button>
+                </div>
+            {% endif %}
+        {% endwith %}
         <div class="card" id="reg_box">
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div id="popup">
-                        {% for message in messages %}
-                            <p>{{ message }}</p>
-                        {% endfor %}
-                        <button onclick="popup.remove()" class="btn btn-warning">Okay</button>
-                    </div>
-                {% endif %}
-            {% endwith %}
             <h2>Register</h2>
             <form action="/users/create" method="post" class="card-body">
                 <label>
@@ -63,15 +63,12 @@
             </form>
             <hr>
             <div class="card-body">
-                <p>line 1</p>
-                <p>line 2</p>
-                <p>line 3</p>
-                <p>line 4</p>
+                <h5>Need information on what instrument to search for?</h5>
+                <a href="https://www.orsymphony.org/learning-community/instruments/" class="btn btn-info" style="margin-bottom: 10px;">Click Here!</a>
+                <p style="margin-bottom: 0px;">Instruments of the Orchestra</p>
+                <p class="fst-italic">- Oregon Symphony</p>
             </div>
         </div>
     </div>
 </body>
 </html>
-
-<!-- Format for adding images -->
-<!-- <img src="{{ url_for('static', filename='images/img.png') }}"> -->

@@ -41,12 +41,20 @@ def show_user_instruments():
     purchased = [inst for inst in sold_instruments if inst.user_id == session['user_id']]
     return render_template('home.html', owned_instruments = owned_instruments, purchased = purchased)
 
-@app.route('/instruments/all')
+@app.route('/instruments/all/', methods=['POST', 'GET'])
 def show_all_instruments():
     if 'user_id' not in session: return redirect('/') # ***
     all_instruments = instrument.Instrument.get_all_instruments_with_users()
-    # REPLACE THIS WITH A QUERY!!!
     instruments_for_sale = [inst for inst in all_instruments if inst.sold == 0]
+    print(request.form, '*'*20)
+    if request.method == "POST":
+        if request.form['name'] and request.form['quality']:
+            filtered_instruments = [inst for inst in instruments_for_sale if inst.name == request.form['name'] 
+                                    and inst.quality == request.form['quality']]
+            return render_template('display_all.html', instruments = filtered_instruments)
+        elif request.form['name'] or request.form['quality']:
+            filtered_instruments = [inst for inst in instruments_for_sale if inst.name == request.form['name'] or inst.quality == request.form['quality']]
+            return render_template('display_all.html', instruments = filtered_instruments)
     return render_template('display_all.html', instruments = instruments_for_sale)
 
 @app.route('/instruments/<int:id>')

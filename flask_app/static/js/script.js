@@ -8,11 +8,8 @@
 // take in the array when checked
 // sort price low to high
 
-const sortByLowPrice = (e, arr) => {
-    e.preventDefault()
-    console.log('check received')
-    console.log(arr)
+// const sortByLowPrice = (arr) => {
+//     console.log('check received')
+//     console.log(arr)
     // arr.sort((inst1, inst2) => inst2.price - inst1.price)
-    return
-}
-
+// }
