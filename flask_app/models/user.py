@@ -25,9 +25,6 @@ class User:
         self.password = data['password']
         self.posted = []
         self.purchased = []
-        # What changes need to be made above for this project?
-        #What needs to be added her for class association?
-
 
 
     # Create Users Models
@@ -44,7 +41,6 @@ class User:
         user_id = connectToMySQL(cls.db).query_db(query, data)
         session['user_id'] = user_id
         session['name'] = data["first_name"]
-        # session['name'] = f'{data["first_name"]} {data["last_name"]}'
         return user_id
 
 
@@ -71,11 +67,6 @@ class User:
         if result:
             return cls(result[0])
         return False
-    
-
-    # Update Users Models
-
-    # Delete Users Models
 
     # Helper Users Methods
     @staticmethod
@@ -85,7 +76,6 @@ class User:
             if bcrypt.check_password_hash(this_user.password, data['password']):
                 session['user_id'] = this_user.id
                 session['name'] = this_user.first_name
-                # session['name'] = f'{this_user.first_name} {this_user.last_name}'
                 return True
         flash('The email or password entered does not match our records.')
         return False
