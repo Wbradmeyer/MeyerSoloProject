@@ -14,6 +14,7 @@ class MySQLConnection:
                                     user = 'root', 
                                     password = 'root', 
                                     db = db,
+                                    port = 33062,
                                     charset = 'utf8mb4',
                                     cursorclass = pymysql.cursors.DictCursor,
                                     autocommit = True)
