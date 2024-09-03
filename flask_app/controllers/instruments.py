@@ -43,16 +43,21 @@ def show_user_instruments():
 @app.route('/instruments/all/', methods=['POST', 'GET'])
 def show_all_instruments():
     if 'user_id' not in session: return redirect('/') # ***
+    # REPLACE WITH all instruments for sale
     all_instruments = instrument.Instrument.get_all_instruments_with_users()
     instruments_for_sale = [inst for inst in all_instruments if inst.sold == 0]
     if request.method == "POST":
+        filtered_instruments = []
         if request.form['name'] and request.form['quality']:
             filtered_instruments = [inst for inst in instruments_for_sale if inst.name == request.form['name'] 
                                     and inst.quality == request.form['quality']]
-            return render_template('display_all.html', instruments = filtered_instruments)
-        elif request.form['name'] or request.form['quality']:
-            filtered_instruments = [inst for inst in instruments_for_sale if inst.name == request.form['name'] or inst.quality == request.form['quality']]
-            return render_template('display_all.html', instruments = filtered_instruments)
+        # elif request.form['name'] or request.form['quality']:
+        #     filtered_instruments = [inst for inst in instruments_for_sale if inst.name == request.form['name'] or inst.quality == request.form['quality']]
+        elif request.form['name']:
+            filtered_instruments = instrument.Instrument.get_instruments_by_name(request.form['name'])
+        elif request.form['quality']:
+            filtered_instruments = instrument.Instrument.get_instruments_by_quality(request.form['quality'])
+        return render_template('display_all.html', instruments = filtered_instruments)
     return render_template('display_all.html', instruments = instruments_for_sale)
 
 @app.route('/instruments/<int:id>')
