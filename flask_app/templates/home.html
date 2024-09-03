@@ -68,7 +68,7 @@
                         {% for instrument in purchased %}
                         <tr>
                             <th scope="row">1</th>
-                            <td>{{ instrument.name }}</td>
+                            <td><a href="/instruments/{{ instrument.id }}">{{ instrument.name }}</a></td>
                             <td>{{ instrument.quality }}</td>
                             <td>${{ instrument.price }}</td>
                             <td>{{ instrument.seller.first_name }} {{ instrument.seller.last_name[0] }}.</td>

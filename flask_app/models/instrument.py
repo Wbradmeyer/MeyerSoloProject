@@ -5,8 +5,8 @@ from flask_app.models import user
 
 
 class Instrument:
-    # db = "solo_project_db"
-    db = "instrument_hub_db"
+    db = "solo_project_db"
+    # db = "instrument_hub_db"
     def __init__(self, data):
         self.id = data['id']
         self.name = data['name']

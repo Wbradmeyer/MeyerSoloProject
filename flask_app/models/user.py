@@ -9,8 +9,8 @@ bcrypt = Bcrypt(app)
 
 
 class User:
-    # db = "solo_project_db"
-    db = "instrument_hub_db"
+    db = "solo_project_db"
+    # db = "instrument_hub_db"
     def __init__(self, data):
         if 'users.id' in data:
             self.id = data['users.id']
