@@ -88,6 +88,24 @@ class Instrument:
         return filtered_instruments
 
     @classmethod
+    def get_instruments_by_name_and_quality(cls, name, quality):
+        data = {'name': name, 'quality': quality}
+        query = """
+        SELECT * FROM instruments
+        JOIN users ON instruments.user_id = users.id
+        WHERE instruments.name = %(name)s
+        AND instruments.quality = %(quality)s
+        ;"""
+        results = connectToMySQL(cls.db).query_db(query, data)
+        filtered_instruments = []
+        if results:
+            for row in results:
+                this_instrument = cls(row)
+                this_instrument.owner = user.User(row)
+                filtered_instruments.append(this_instrument)
+        return filtered_instruments
+
+    @classmethod
     def get_all_instruments_with_users(cls):
         query = """
         SELECT * FROM instruments

@@ -49,10 +49,7 @@ def show_all_instruments():
     if request.method == "POST":
         filtered_instruments = []
         if request.form['name'] and request.form['quality']:
-            filtered_instruments = [inst for inst in instruments_for_sale if inst.name == request.form['name'] 
-                                    and inst.quality == request.form['quality']]
-        # elif request.form['name'] or request.form['quality']:
-        #     filtered_instruments = [inst for inst in instruments_for_sale if inst.name == request.form['name'] or inst.quality == request.form['quality']]
+            filtered_instruments = instrument.Instrument.get_instruments_by_name_and_quality(request.form['name'], request.form['quality'])
         elif request.form['name']:
             filtered_instruments = instrument.Instrument.get_instruments_by_name(request.form['name'])
         elif request.form['quality']:
