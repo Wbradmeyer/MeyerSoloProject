@@ -40,6 +40,7 @@ def show_user_instruments():
     purchased = [inst for inst in sold_instruments if inst.user_id == session['user_id']]
     return render_template('home.html', owned_instruments = owned_instruments, purchased = purchased)
 
+
 @app.route('/instruments/all/', methods=['POST', 'GET'])
 def show_all_instruments():
     if 'user_id' not in session: return redirect('/') # ***
@@ -57,11 +58,13 @@ def show_all_instruments():
         return render_template('display_all.html', instruments = filtered_instruments)
     return render_template('display_all.html', instruments = instruments_for_sale)
 
+
 @app.route('/instruments/<int:id>')
 def instrument_card(id):
     if 'user_id' not in session: return redirect('/') # ***
     this_instrument = instrument.Instrument.get_instrument_by_id(id)
     return render_template('one_instrument.html', instrument = this_instrument)
+
 
 @app.route('/instruments/images/<filename>')
 def get_instrument_image(filename):
@@ -92,7 +95,8 @@ def edit_instrument(id):
                             inst_select = inst_select, quality_select = quality_select)
     else:
         return redirect('/users/logout') # hacking protection
-    
+
+
 @app.route('/instruments/purchase/<int:id>', methods=['POST'])
 def purchase_instrument(id):
     if 'user_id' not in session: return redirect('/') # ***
