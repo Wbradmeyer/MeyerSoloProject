@@ -27,7 +27,8 @@
                             <p>Price: ${{ instrument.price }}</p>
                             <p>Description: {{ instrument.description }}</p>
                             {% if instrument.sold == 1 %}
-                                <p>Sold to: {{ instrument.owner.first_name }} {{ instrument.owner.last_name[0] }}.</p>
+                                <p>Buyer: {{ instrument.owner.first_name }} {{ instrument.owner.last_name[0] }}.</p>
+                                <p>Seller: {{ instrument.seller.first_name }} {{ instrument.seller.last_name[0] }}.</p>
                             {% elif instrument.user_id != session.user_id: %}
                                 <form action="/instruments/purchase/{{ instrument.id }}" method="post">
                                     <button type="submit" class="btn btn-success">Purchase Instrument</button>

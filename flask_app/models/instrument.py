@@ -50,8 +50,34 @@ class Instrument:
         result = connectToMySQL(cls.db).query_db(query, data)
         this_instrument = cls(result[0])
         this_instrument.owner = user.User(result[0])
+        this_instrument.seller = user.User.get_user_by_id(this_instrument.seller_id)
         return this_instrument
     
+    @classmethod
+    def get_instrument_by_name(cls, name):
+        data = {'name': name}
+        query = """
+        SELECT * FROM instruments
+        JOIN users ON instruments.user_id = users.id
+        WHERE instruments.name = %(name)s
+        ;"""
+        result = connectToMySQL(cls.db).query_db(query, data)
+        this_instrument = cls(result[0])
+        this_instrument.owner = user.User(result[0])
+        return this_instrument
+    
+    @classmethod
+    def get_instrument_by_quality(cls, quality):
+        data = {'quality': quality}
+        query = """
+        SELECT * FROM instruments
+        JOIN users ON instruments.user_id = users.id
+        WHERE instruments.quality = %(quality)s
+        ;"""
+        result = connectToMySQL(cls.db).query_db(query, data)
+        this_instrument = cls(result[0])
+        this_instrument.owner = user.User(result[0])
+        return this_instrument
 
     @classmethod
     def get_all_instruments_with_users(cls):
