@@ -44,11 +44,11 @@ def show_user_instruments():
 @app.route('/instruments/all/', methods=['POST', 'GET'])
 def show_all_instruments():
     if 'user_id' not in session: return redirect('/') # ***
-    # REPLACE WITH all instruments for sale
-    all_instruments = instrument.Instrument.get_all_instruments_with_users()
-    instruments_for_sale = [inst for inst in all_instruments if inst.sold == 0]
+    instruments_for_sale = instrument.Instrument.get_all_instruments_for_sale()
+
     if request.method == "POST":
         filtered_instruments = []
+
         if request.form['name'] and request.form['quality']:
             filtered_instruments = instrument.Instrument.get_instruments_by_name_and_quality(request.form['name'], request.form['quality'])
         elif request.form['name']:
@@ -56,6 +56,7 @@ def show_all_instruments():
         elif request.form['quality']:
             filtered_instruments = instrument.Instrument.get_instruments_by_quality(request.form['quality'])
         return render_template('display_all.html', instruments = filtered_instruments)
+    
     return render_template('display_all.html', instruments = instruments_for_sale)
 
 

@@ -135,7 +135,22 @@ class Instrument:
                 this_instrument.seller = user.User(row)
                 all_sold.append(this_instrument)
         return all_sold
-
+    
+    @classmethod
+    def get_all_instruments_for_sale(cls):
+        query = """
+        SELECT * FROM instruments
+        JOIN users ON instruments.seller_id = users.id
+        WHERE instruments.sold = 0
+        ;"""
+        results = connectToMySQL(cls.db).query_db(query)
+        all_for_sale = []
+        if results:
+            for row in results:
+                this_instrument = cls(row)
+                this_instrument.seller = user.User(row)
+                all_for_sale.append(this_instrument)
+        return all_for_sale
 
     # Update Instruments Models
     @classmethod
