@@ -148,7 +148,7 @@ class Instrument:
         if results:
             for row in results:
                 this_instrument = cls(row)
-                this_instrument.seller = user.User(row)
+                this_instrument.owner = user.User(row)
                 all_for_sale.append(this_instrument)
         return all_for_sale
 
