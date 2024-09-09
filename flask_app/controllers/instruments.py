@@ -33,12 +33,9 @@ def create_instrument():
 @app.route('/home')
 def show_user_instruments():
     if 'user_id' not in session: return redirect('/') # ***
-    all_instruments = instrument.Instrument.get_all_instruments_with_users()
-    # REPLACE THIS WITH A QUERY!!!!
-    owned_instruments = [inst for inst in all_instruments if inst.seller_id == session['user_id']]
-    sold_instruments = instrument.Instrument.get_all_instruments_with_sellers()
-    purchased = [inst for inst in sold_instruments if inst.user_id == session['user_id']]
-    return render_template('home.html', owned_instruments = owned_instruments, purchased = purchased)
+    # Query the db passing in session user id to return the list of user instruments
+    instruments = instrument.Instrument.get_user_instruments(session['user_id'])
+    return render_template('home.html', instruments=instruments)
 
 
 @app.route('/instruments/all/', methods=['POST', 'GET'])

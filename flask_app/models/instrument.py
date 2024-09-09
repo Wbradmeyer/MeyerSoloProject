@@ -104,37 +104,6 @@ class Instrument:
                 this_instrument.owner = user.User(row)
                 filtered_instruments.append(this_instrument)
         return filtered_instruments
-
-    @classmethod
-    def get_all_instruments_with_users(cls):
-        query = """
-        SELECT * FROM instruments
-        JOIN users ON instruments.user_id = users.id
-        ;"""
-        results = connectToMySQL(cls.db).query_db(query)
-        all_instruments = []
-        if results:
-            for row in results:
-                this_instrument = cls(row)
-                this_instrument.owner = user.User(row)
-                all_instruments.append(this_instrument)
-        return all_instruments
-    
-    @classmethod
-    def get_all_instruments_with_sellers(cls):
-        query = """
-        SELECT * FROM instruments
-        JOIN users ON instruments.seller_id = users.id
-        WHERE instruments.sold = 1
-        ;"""
-        results = connectToMySQL(cls.db).query_db(query)
-        all_sold = []
-        if results:
-            for row in results:
-                this_instrument = cls(row)
-                this_instrument.seller = user.User(row)
-                all_sold.append(this_instrument)
-        return all_sold
     
     @classmethod
     def get_all_instruments_for_sale(cls):
@@ -151,6 +120,25 @@ class Instrument:
                 this_instrument.owner = user.User(row)
                 all_for_sale.append(this_instrument)
         return all_for_sale
+    
+    @classmethod
+    def get_user_instruments(cls ,id):
+        data = {"id": id}
+        query = """
+        SELECT * FROM instruments
+        JOIN users ON instruments.user_id = users.id
+        WHERE instruments.user_id = %(id)s
+        OR instruments.seller_id = %(id)s
+        ;"""
+        results = connectToMySQL(cls.db).query_db(query, data)
+        user_instruments = []
+        if results:
+            for row in results:
+                this_instrument = cls(row)
+                this_instrument.owner = user.User(row)
+                this_instrument.seller = user.User.get_user_by_id(this_instrument.seller_id)
+                user_instruments.append(this_instrument)
+        return user_instruments
 
     # Update Instruments Models
     @classmethod
