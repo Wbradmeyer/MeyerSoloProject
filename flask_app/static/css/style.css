@@ -81,3 +81,7 @@ h1 {
     background-attachment: fixed;
     background-size: cover;
 }
+
+.inst_link {
+    text-decoration: none
+}

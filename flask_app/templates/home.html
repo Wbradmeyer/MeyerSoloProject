@@ -36,7 +36,7 @@
                                 {% if instrument.sold != 0 %}
                                     <tr class="table-danger">
                                         <th scope="row">{{ loop.index }}</th>
-                                        <td><a href="/instruments/{{ instrument.id }}">{{ instrument.name }}</a></td>
+                                        <td><a class="inst_link" href="/instruments/{{ instrument.id }}">{{ instrument.name }}</a></td>
                                         <td>{{ instrument.quality }}</td>
                                         <td>${{ instrument.price }}</td>
                                         <td>Yes</td>
@@ -44,7 +44,7 @@
                                 {% else %}
                                     <tr>
                                         <th scope="row">{{ loop.index }}</th>
-                                        <td><a href="/instruments/{{ instrument.id }}">{{ instrument.name }}</a></td>
+                                        <td><a class="inst_link" href="/instruments/{{ instrument.id }}">{{ instrument.name }}</a></td>
                                         <td>{{ instrument.quality }}</td>
                                         <td>${{ instrument.price }}</td>
                                         <td>No</td>
@@ -71,7 +71,7 @@
                             {% if instrument.sold and instrument.user_id == session.user_id %}
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td><a href="/instruments/{{ instrument.id }}">{{ instrument.name }}</a></td>
+                                    <td><a class="inst_link" href="/instruments/{{ instrument.id }}">{{ instrument.name }}</a></td>
                                     <td>{{ instrument.quality }}</td>
                                     <td>${{ instrument.price }}</td>
                                     <td>{{ instrument.seller.first_name }} {{ instrument.seller.last_name[0] }}.</td>
