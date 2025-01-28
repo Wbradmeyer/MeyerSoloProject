@@ -96,3 +96,9 @@ h1 {
 .sold {
     background-color: rgb(105, 105, 105);
 }
+
+.card {
+    background-color: #026666;
+    color: white;
+    border-radius: 12px;
+}
