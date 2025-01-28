@@ -17,12 +17,8 @@ h1 {
     color: white;
 }
 
-#reg_box > h2 {
-    color: rgb(83, 243, 155);
-}
-
-#login_box > h2 {
-    color: rgb(21, 215, 215);
+#reg_box > h2, #login_box > h2, #login_h1 {
+    color: rgb(197, 176, 142);
 }
 
 .form-control {
@@ -84,4 +80,8 @@ h1 {
 
 .inst_link {
     text-decoration: none
+}
+
+.sold {
+    background-color: rgb(105, 105, 105);
 }
