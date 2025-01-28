@@ -8,18 +8,27 @@ h1 {
     margin: 25px;
 }
 
-#reg_box, #login_box {
+/* #reg_box, #login_box {
     align-items: flex-start;
     background-color: slategray;
     padding: 20px;
     width: 340px;
     margin: 25px;
     color: white;
+} */
+
+#reg_box, #login_box {
+    align-items: flex-start;
+    background-color: #708090;
+    padding: 20px;
+    width: 340px;
+    margin: 25px;
+    color: #F5F5DC;
 }
 
-#reg_box > h2, #login_box > h2, #login_h1 {
+/* #reg_box > h2, #login_box > h2, #login_h1 {
     color: rgb(197, 176, 142);
-}
+} */
 
 .form-control {
     width: 250px;
@@ -35,8 +44,10 @@ h1 {
     position: absolute;
     border: 1px solid black;
     border-radius: 15pt;
-    background-color: indianred;
-    color: white;
+    /* background-color: indianred;
+    color: white; */
+    background-color: #FF7F50;
+    color: #FFFFFF;
     padding: 20px;
     z-index: 1;
 }
