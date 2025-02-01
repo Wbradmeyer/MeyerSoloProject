@@ -79,11 +79,32 @@ h1 {
 }
 
 .sold {
-    background-color: rgb(105, 105, 105);
+    /* background-color: rgb(105, 105, 105); */
+    background-color: #708090;
+    color: lightgray;
 }
 
 .card {
     background-color: #026666;
     color: white;
     border-radius: 12px;
+}
+
+.btn {
+    color: black;
+}
+
+#show-all {
+    background-color: #FFA500;
+    border-color: #FFA500;
+}
+
+#new-post {
+    background-color: #00FF7F;
+    border-color: #00FF7F;
+}
+
+#dash-logout {
+    background-color: #00BFFF;
+    border-color: #00BFFF;
 }
