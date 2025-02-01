@@ -25,6 +25,10 @@ h1 {
 
 .btn {
     margin-top: 10px;
+    color: black;
+}
+.btn:hover {
+    opacity: 0.85;
 }
 
 #popup {
@@ -90,21 +94,22 @@ h1 {
     border-radius: 12px;
 }
 
-.btn {
-    color: black;
-}
-
 #show-all {
     background-color: #FFA500;
     border-color: #FFA500;
 }
 
-#new-post {
+#new-post, #filter {
     background-color: #00FF7F;
     border-color: #00FF7F;
 }
 
-#dash-logout {
+#dash-logout, #all-logout {
     background-color: #00BFFF;
     border-color: #00BFFF;
+}
+
+#all-to-home {
+    background-color: #B0C4DE;
+    border-color: #B0C4DE;
 }
