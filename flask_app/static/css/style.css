@@ -100,17 +100,17 @@ h1 {
     border-color: #FFA500;
 }
 
-#login-btn, #new-post, #filter, #purchase-inst, #edit-post, #create-post {
+#login-btn, #new-post, #filter, #purchase-inst, #edit-post, #create-post, #edit {
     background-color: #00FF7F;
     border-color: #00FF7F;
 }
 
-#orchestra, #dash-logout, #all-logout, #one-inst-logout, #create-logout {
+#orchestra, #dash-logout, #all-logout, #one-inst-logout, #create-logout, #edit-logout {
     background-color: #00BFFF;
     border-color: #00BFFF;
 }
 
-#all-to-home, #one-inst-home, #create-to-home {
+#all-to-home, #one-inst-home, #create-to-home, #edit-to-home {
     background-color: #B0C4DE;
     border-color: #B0C4DE;
 }

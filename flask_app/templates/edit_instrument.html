@@ -13,8 +13,8 @@
     <div class="container" style="width: 900px;">
         <div class="nav_bar">
             <h1>Edit Instrument</h1>
-            <a href="/home" class="btn btn-warning">Home</a>
-            <a href="/users/logout" class="btn btn-primary">Logout</a>
+            <a href="/home" class="btn" id="edit-to-home">Home</a>
+            <a href="/users/logout" class="btn" id="edit-logout">Logout</a>
         </div>
         <div>
             <div class="card" style="background-color: darkslategrey;">
@@ -68,12 +68,12 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label for="image" style=>Change Picture:
+                            <label for="image">Change Picture:
                                 <br>
                                 <input type="file" name="image">
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-success">Create Post</button>
+                        <button type="submit" class="btn" id="edit">Edit Post</button>
                     </div>
                 </form>
             </div>
