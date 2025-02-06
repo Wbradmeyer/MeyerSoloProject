@@ -95,22 +95,27 @@ h1 {
     border-radius: 12px;
 }
 
-#reg-btn, #show-all {
+#reg-btn, #show-all, #one-to-all {
     background-color: #FFA500;
     border-color: #FFA500;
 }
 
-#login-btn, #new-post, #filter {
+#login-btn, #new-post, #filter, #purchase-inst, #edit-post {
     background-color: #00FF7F;
     border-color: #00FF7F;
 }
 
-#orchestra, #dash-logout, #all-logout {
+#orchestra, #dash-logout, #all-logout, #one-inst-logout {
     background-color: #00BFFF;
     border-color: #00BFFF;
 }
 
-#all-to-home {
+#all-to-home, #one-inst-home {
     background-color: #B0C4DE;
     border-color: #B0C4DE;
+}
+
+#delete-post {
+    background-color: rgb(224, 135, 135);
+    border-color: rgb(224, 135, 135);
 }

@@ -15,8 +15,8 @@
             <h1>{{ instrument.name }} - {{ instrument.owner.first_name }} 
                 {{ instrument.owner.last_name[0] }}.
             </h1>
-            <a href="/home" class="btn btn-light">Home</a>
-            <a href="/users/logout" class="btn btn-primary">Logout</a>
+            <a href="/home" class="btn" id="one-inst-home">Home</a>
+            <a href="/users/logout" class="btn" id="one-inst-logout">Logout</a>
         </div>
         <div class="card" style="background-color: rgb(3, 114, 114);">
             <div class="card-body">
@@ -31,11 +31,11 @@
                                 <p>Seller: {{ instrument.seller.first_name }} {{ instrument.seller.last_name[0] }}.</p>
                             {% elif instrument.user_id != session.user_id: %}
                                 <form action="/instruments/purchase/{{ instrument.id }}" method="post">
-                                    <button type="submit" class="btn btn-success">Purchase Instrument</button>
+                                    <button type="submit" class="btn" id="purchase-inst">Purchase Instrument</button>
                                 </form>
                             {% else %}
-                                <a href="/instruments/delete/{{ instrument.id }}" class="btn btn-danger">Delete Post</a>
-                                <a href="/instruments/edit/{{ instrument.id }}" class="btn btn-secondary">Edit Post</a>
+                                <a href="/instruments/delete/{{ instrument.id }}" class="btn" id="delete-post">Delete Post</a>
+                                <a href="/instruments/edit/{{ instrument.id }}" class="btn" id="edit-post">Edit Post</a>
                             {% endif %}
                         </div>
                         <div>
@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <a href="/instruments/all" class="btn btn-warning">All Instruments</a>
+        <a href="/instruments/all" class="btn" id="one-to-all">All Instruments</a>
     </div>
 </body>
 </html>
