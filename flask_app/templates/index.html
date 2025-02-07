@@ -20,7 +20,7 @@
                     {% for message in messages %}
                         <p>{{ message }}</p>
                     {% endfor %}
-                    <button onclick="popup.remove()" class="btn btn-warning">Okay</button>
+                    <button onclick="popup.remove()" class="btn" id="popup-close">Okay</button>
                 </div>
             {% endif %}
         {% endwith %}
