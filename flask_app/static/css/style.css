@@ -85,8 +85,9 @@ h1 {
 }
 
 .sold {
-    background-color: #708090;
-    color: lightgray;
+    background-color: #fc8207;
+    color: pink;
+    /* color: lightgray; */
 }
 
 .card {

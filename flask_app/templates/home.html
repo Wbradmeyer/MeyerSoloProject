@@ -34,7 +34,7 @@
                         {% for instrument in instruments %}
                             {% if instrument.seller_id == session.user_id %}
                                 {% if instrument.sold != 0 %}
-                                    <tr class="sold">
+                                    <tr style="background-color: darkgrey; color: black;">
                                         <th scope="row">{{ loop.index }}</th>
                                         <td><a class="inst_link" href="/instruments/{{ instrument.id }}">{{ instrument.name }}</a></td>
                                         <td>{{ instrument.quality }}</td>
