@@ -31,7 +31,7 @@ h1 {
 .btn:hover {
     filter:brightness(80%);
     color: white;
-    box-shadow: 0px 0px 5px 5px black;
+    box-shadow: 0px 0px 5px 5px #708090;
 }
 
 #popup {
@@ -120,4 +120,8 @@ h1 {
 #delete-post {
     background-color: rgb(224, 135, 135);
     border-color: rgb(224, 135, 135);
+}
+
+#popup-close:hover {
+    box-shadow: 0px 0px 5px 5px #FF7F50
 }
