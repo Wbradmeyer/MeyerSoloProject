@@ -129,6 +129,6 @@ h1 {
     box-shadow: 0px 0px 5px 5px #708090;
 }
 
-#create-post:hover, #edit-post:hover, #delete-post:hover {
+#create-post:hover, #edit-post:hover, #delete-post:hover, #edit:hover {
     box-shadow: 0px 0px 5px 5px #026666
 }
