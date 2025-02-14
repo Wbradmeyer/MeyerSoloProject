@@ -31,7 +31,6 @@ h1 {
 .btn:hover {
     filter:brightness(80%);
     color: white;
-    box-shadow: 0px 0px 5px 5px #708090;
 }
 
 #popup {
@@ -126,6 +125,10 @@ h1 {
     box-shadow: 0px 0px 5px 5px #FF7F50
 }
 
-#show-all:hover, #new-post:hover, #dash-logout:hover {
-    box-shadow: 0px 0px 0px 0px
+#reg-btn:hover, #login-btn:hover, #orchestra:hover {
+    box-shadow: 0px 0px 5px 5px #708090;
+}
+
+#create-post:hover {
+    box-shadow: 0px 0px 5px 5px #026666
 }
