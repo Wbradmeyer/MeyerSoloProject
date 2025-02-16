@@ -91,7 +91,8 @@ h1 {
 }
 
 .card {
-    background-color: #026666;
+    /* background-color: #026666; */
+    background-color: rgba(2, 102, 102, 0.5) !important;
     color: white;
     border-radius: 12px;
 }
