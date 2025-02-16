@@ -10,11 +10,12 @@ h1 {
 
 #reg_box, #login_box {
     align-items: flex-start;
-    background-color: #708090;
+    background-color: rgba(112, 128, 144, 0.7);
     padding: 20px;
     width: 340px;
     margin: 25px;
     color: #F5F5DC;
+    border-radius: 12px;
 }
 
 .form-control {
@@ -87,11 +88,9 @@ h1 {
 .sold {
     background-color: #fc8207;
     color: pink;
-    /* color: lightgray; */
 }
 
 .card {
-    /* background-color: #026666; */
     background-color: rgba(2, 102, 102, 0.6) !important;
     color: white;
     border-radius: 12px;
