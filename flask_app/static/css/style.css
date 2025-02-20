@@ -82,7 +82,11 @@ h1 {
 }
 
 .inst_link {
-    text-decoration: none
+    color: white
+}
+
+.inst_link:hover {
+    color: #FFA500;
 }
 
 .sold {
