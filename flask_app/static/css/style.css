@@ -29,7 +29,7 @@ h1 {
     color: black;
 }
 
-.btn:hover {
+.btn:hover, option {
     filter:brightness(80%);
     color: white;
 }
