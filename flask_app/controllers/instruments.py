@@ -9,7 +9,6 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-
 # Create Instruments Controller
 @app.route('/instruments/new', methods=['POST', 'GET'])
 def create_instrument():
@@ -44,7 +43,7 @@ def show_all_instruments():
     instruments_for_sale = instrument.Instrument.get_all_instruments_for_sale()
 
     if request.method == "POST":
-        filtered_instruments = []
+        filtered_instruments = instruments_for_sale
 
         if request.form['name'] and request.form['quality']:
             filtered_instruments = instrument.Instrument.get_instruments_by_name_and_quality(request.form['name'], request.form['quality'])
